@@ -1,5 +1,6 @@
 import numpy as np
 from scipy import ndimage
+import random
 
 import keras
 
@@ -56,10 +57,12 @@ class DataGenerator(keras.utils.Sequence):
 
         # Generate data
         for i, data_point in enumerate(list_images_temp):
-            # Store sample
+            ## Store sample
+            #if(bool(random.getrandbits(1)) == True):
+            #    X[i,] = np.flip(ndimage.imread(data_point[0]), 1)
+            #    y[i] = -self.labels[data_point[1]]
+            #else:
             X[i,] = ndimage.imread(data_point[0])
-
-            # Store class
             y[i] = self.labels[data_point[1]]
 
         return X, y
